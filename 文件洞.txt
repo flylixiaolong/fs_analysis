@@ -1,0 +1,11 @@
+fly@Geek:~$ sudo dumpe2fs -h /dev/sda1 | grep "Block size"
+dumpe2fs 1.42.12 (29-Aug-2014)
+Block size:               4096
+fly@Geek:~$ echo -n "X" | dd of=hole bs=4096 seek=1
+记录了0+1 的读入
+记录了0+1 的写出
+1字节(1 B)已复制，0.00226697 秒，0.4 kB/秒
+fly@Geek:~$ ll -s hole
+4 -rw-rw-r-- 1 fly fly 4097  4月 13 10:44 hole
+fly@Geek:~$ ls --block-size=4K -ls hole
+1 -rw-rw-r-- 1 fly fly 2  4月 13 10:44 hole
